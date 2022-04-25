@@ -1,4 +1,5 @@
 # vue-3-reactivity
-Code from the Vue 3 Reactivity course
+Code adapted from the Vue 3 Reactivity course
 
-Run the files in your terminal with `node [filename]`
+## Running files
+You can use node to run the project files with the command `node [filename]`
