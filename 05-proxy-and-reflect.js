@@ -18,7 +18,7 @@ const proxiedProduct = new Proxy(product, {
   },
   set(target, key, value) {
     console.log(`Set was called with key: ${key}, value: ${value}`)
-    target[key] = value
+    return (target[key] = value)
   },
 })
 

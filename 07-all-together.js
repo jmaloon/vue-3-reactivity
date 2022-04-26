@@ -1,5 +1,3 @@
-// multiple reactive objects
-
 // targetMap stores the effects that each object should re-run when it's updated
 const targetMap = new WeakMap()
 
@@ -64,3 +62,5 @@ effect()
 console.log(total)
 product.quantity = 3
 console.log(total)
+// problem: we only want to track effects when they are within a
+// console.log('Updated quantity to =', product.quantity)

@@ -2,7 +2,7 @@
 const product = { price: 5, quantity: 2 }
 let total = 0
 
-// storing logic in anonymous function
+// storing logic in an anonymous function
 const effect = () => {
   total = product.price * product.quantity
 }
