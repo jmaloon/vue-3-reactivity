@@ -1,4 +1,5 @@
-// multiple reactive objects
+// tracking effects for (multiple) properties across (multiple) objects
+// https://firebasestorage.googleapis.com/v0/b/vue-mastery.appspot.com/o/flamelink%2Fmedia%2F1580763789885_5.opt.jpg?alt=media&token=110bf30c-3b78-482f-bac2-30ca8403bfe0
 
 // targetMap stores the effects that each object should re-run when it's updated
 const targetMap = new WeakMap()
@@ -45,5 +46,3 @@ console.log(total)
 product.quantity = 3
 trigger(product, 'quantity')
 console.log(total)
-
-// https://firebasestorage.googleapis.com/v0/b/vue-mastery.appspot.com/o/flamelink%2Fmedia%2F1580763789885_5.opt.jpg?alt=media&token=110bf30c-3b78-482f-bac2-30ca8403bfe0

@@ -26,7 +26,7 @@ function trigger(target, key) {
     return
   }
 
-  let dep = depsMap.get(key)
+  const dep = depsMap.get(key)
   if (dep) {
     dep.forEach((effect) => effect())
   }
@@ -35,14 +35,16 @@ function trigger(target, key) {
 function reactive(target) {
   const handlers = {
     get(target, key, receiver) {
-      let result = Reflect.get(target, key, receiver)
+      const result = Reflect.get(target, key, receiver)
+      // Track when we accessing the key!
       track(target, key)
       return result
     },
     set(target, key, value, receiver) {
-      let oldValue = target[key]
-      let result = Reflect.set(target, key, value, receiver)
+      const oldValue = target[key]
+      const result = Reflect.set(target, key, value, receiver)
       if (result && oldValue != value) {
+        // Trigger when the value changes!
         trigger(target, key)
       }
       return result
