@@ -1,4 +1,5 @@
-var { reactive, toRefs } = require('./reactivity.cjs')
+var { computed, effect, reactive, toRefs } = require('./reactivity.cjs')
+
 const store = reactive({
   items: [
     { value: 1, name: 'A' },
@@ -10,15 +11,17 @@ const store = reactive({
   },
 })
 
-const { getItemIds: itemIdsToRef } = toRefs(store)
 const itemIds = store.getItemIds
+const { getItemIds: itemIdsToRef } = toRefs(store)
+const computedItemIds = computed(() => store.getItemIds)
 
-console.log(store.getItemIds)
-console.log(itemIds)
-console.log(itemIdsToRef.value)
+effect(() => {
+  // track the deps
+  console.log(store.getItemIds)
+  //   console.log(itemIdsToRef.value)
+  //   console.log(computedItemIds.value)
+  //   console.log(itemIds) // reactivity breaks!!
+})
 
+// trigger changes
 store.items.push({ value: 4, name: 'D' })
-
-console.log(store.getItemIds)
-console.log(itemIds)
-console.log(itemIdsToRef.value)
