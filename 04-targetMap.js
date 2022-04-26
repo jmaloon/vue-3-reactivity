@@ -33,9 +33,9 @@ function trigger(target, key) {
   }
 }
 
-let product = { price: 5, quantity: 2 }
+const product = { price: 5, quantity: 2 }
 let total = 0
-let effect = () => {
+const effect = () => {
   total = product.price * product.quantity
 }
 // problem: manually calling 'track' and 'trigger'

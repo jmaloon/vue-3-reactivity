@@ -23,14 +23,3 @@ const product = reactive({ price: 5, quantity: 2 })
 console.log(product.quantity)
 product.quantity = 4
 console.log(product.quantity)
-
-// console.log('--- '.repeat(5))
-// console.log('What if the object is destructured?')
-// console.log('--- '.repeat(5))
-
-// const price = product.price
-// console.log('product.price', product.price)
-// console.log('destructured price', price)
-// product.price = 10
-// console.log('product.price', product.price)
-// console.log('destructured price', price) // reactivity fails!

@@ -1,8 +1,18 @@
-// targetMap stores the effects that each object should re-run when it's updated
+// the active effect running
+let activeEffect = null
+
+function effect(eff) {
+  activeEffect = eff // set
+  activeEffect() // run
+  activeEffect = null // unset
+}
+
 const targetMap = new WeakMap()
 
 function track(target, key) {
-  console.log(`track: key = ${key}`)
+  // only track if we have an activeEffect
+  if (!activeEffect) return
+
   let depsMap = targetMap.get(target)
   if (!depsMap) {
     depsMap = new Map()
@@ -15,11 +25,10 @@ function track(target, key) {
     depsMap.set(key, dep)
   }
 
-  dep.add(effect)
+  dep.add(activeEffect)
 }
 
 function trigger(target, key) {
-  console.log(`trigger: key = ${key}`)
   const depsMap = targetMap.get(target)
 
   if (!depsMap) {
@@ -56,16 +65,11 @@ function reactive(target) {
 const product = reactive({ price: 5, quantity: 2 })
 let total = 0
 
-// problem: how do we make the effects more dynamic?
-const effect = () => {
+effect(() => {
   total = product.price * product.quantity
-}
-effect()
+})
+// effect() => can remove this since it is run when added
 
 console.log(total)
 product.quantity = 3
 console.log(total)
-product.quantity = 4
-console.log(total)
-// problem: we only want to track within an effect
-// console.log('Updated quantity to =', product.quantity)

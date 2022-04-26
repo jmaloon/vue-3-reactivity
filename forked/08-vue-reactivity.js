@@ -1,4 +1,4 @@
-var { reactive, computed, effect } = require('./reactivity.cjs')
+var { reactive, computed, effect } = require('../reactivity.cjs')
 
 let product = reactive({ price: 5, quantity: 2 })
 
