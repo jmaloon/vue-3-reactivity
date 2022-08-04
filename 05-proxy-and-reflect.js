@@ -23,4 +23,4 @@ const proxiedProduct = new Proxy(product, {
 })
 
 proxiedProduct.price = 20
-console.log(proxiedProduct.price)
+proxiedProduct.price
